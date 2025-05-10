@@ -1,4 +1,4 @@
-### The Expectation-maximization algorithm
+## The Expectation-maximization algorithm
 
 This project entails the how and the why of the expectation-maximization algorithm used in the context of gaussian data. 
 
@@ -11,4 +11,19 @@ The E-M algorithm is able to fit data to distributions as in the images below.
 <img src="https://github.com/user-attachments/assets/3010d96f-9ee0-4398-9ebb-26a3d68ed8de" width="400" >
 
 <img src="https://github.com/user-attachments/assets/9e977c85-7298-4b2c-9d18-c6e4433eba92" width="400" >
+
+### Similarities with  K-means clustering
+The EM algorithm has similarities with K-means clustering. EM not only uses the means, but also the spread of data to cluster data.
+* Randomly initialize K cluster centroids μₖ.
+* Compute the distance of each data point with all K cluster centroids.
+* Assign the data point to the closest cluster centroid (one with minimum distance).
+* Re-compute the centroid for each K cluster, based on the points inside the cluster.
+* Repeat the above steps for a fixed number of iterations or until convergence is reached.
+
+### Two steps
+Initially distributions can be created using random values for means and covariance matrix.
+#### The expectation step
+In the expectation step the algorithm calculates some 
+
+
 
