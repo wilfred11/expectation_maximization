@@ -6,9 +6,7 @@ Clustering algorithms play an important role in understanding data. Grasp relati
 
 The E-M algorithm maximizes the likelihood of data assuming a certain number distributions with different means and covariance matrices. GMM can be used for generative unsupervised learning or clustering.
 
-![star](https://github.com/user-attachments/assets/3010d96f-9ee0-4398-9ebb-26a3d68ed8de)
-
-![plot_state_iteration_64](https://github.com/user-attachments/assets/9e977c85-7298-4b2c-9d18-c6e4433eba92)
+<img src="https://github.com/user-attachments/assets/3010d96f-9ee0-4398-9ebb-26a3d68ed8de" width="400" >
 
 <img src="https://github.com/user-attachments/assets/9e977c85-7298-4b2c-9d18-c6e4433eba92" width="400" >
 
