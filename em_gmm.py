@@ -1,11 +1,7 @@
-import random
-
 import numpy as np
 from scipy.stats import multivariate_normal
 import random
-import pandas as pd
 import matplotlib.pyplot as plt
-#import seaborn as sns
 
 np.random.seed(seed=24)
 random.seed(10)
@@ -14,6 +10,9 @@ random.seed(10)
 # https://github.com/sumeyye-agac/expectation-maximization-for-gaussian-mixture-model-from-scratch/blob/main/EMforGMM.py
 
 
+"""
+this function creates 600 data items that origins from three bivariate normal distributions
+"""
 def create_data():
     m1 = [1, 1]  # consider a random mean and covariance value
     m2 = [7, 7]
@@ -30,7 +29,7 @@ def create_data():
     return d, x, y, z
 
 
-def logLikelihoodCalculation(data, K, N, means, covariances, mixing_coefficients):
+def logLikelihood(data, K, N, means, covariances, mixing_coefficients):
     likelihood = np.zeros((N, K))
     for n in range(N):
         for k in range(K):
@@ -41,56 +40,23 @@ def logLikelihoodCalculation(data, K, N, means, covariances, mixing_coefficients
     return log_likelihood
 
 
-"""
-"""
 
 
-def expectationStep(data, K, N, means, covariances, mixing_coefficients):
-    gamma = np.zeros((N, K))
-    for n in range(N):
-        sum_denominator = 0
-        for k in range(K):
-            denominator = mixing_coefficients[k] * multivariate_normal.pdf(
-                data[n], means[k], covariances[k]
-            )
-            sum_denominator += denominator
-        for k in range(K):
-            numerator = mixing_coefficients[k] * multivariate_normal.pdf(
-                data[n], means[k], covariances[k]
-            )
-            gamma[n, k] = numerator / sum_denominator
-    print("gamma")
-    print(gamma)
-    return gamma
 
 
-def expectationStep_(data, K, N, means, covariances, mixing_coefficients):
-    gamma = np.zeros((N, K))
-    for n in range(N):
-        sum_denominator = 0
-        for k in range(K):
-            denominator = mixing_coefficients[k] * multivariate_normal.pdf(
-                data[n], means[k], covariances[k]
-            )
-            sum_denominator += denominator
-        for k in range(K):
-            numerator = mixing_coefficients[k] * multivariate_normal.pdf(
-                data[n], means[k], covariances[k]
-            )
-            gamma[n, k] = numerator / sum_denominator
-    # print("gamma")
-    # print(gamma)
-    mt = np.matrix(gamma)
-    # print("mt")
-    # print(mt)
-    return mt
+def expectation_step(data, K, N, means, covariances, mixing_coefficients):
+    denoms = []
+    for k in range(K):
+        denom = mixing_coefficients[k] * multivariate_normal.pdf(data, means[k], covariances[k])
+        denoms.append(denom)
+    denoms_= np.array(denoms)
+    denoms_sum = np.sum(denoms_.T, axis=1)
+    resps = denoms_ / denoms_sum
+    return resps.T
 
-
-def maximizationStep_(data, K, N, D, gamma):
-    # print("data")
+def maximization_step(data, K, N, D, resps):
     data_ = data[:, np.newaxis]
-    # print("gamma")
-    gamma_ = gamma.getA()[:, :, np.newaxis]
+    gamma_ = resps[:, :, np.newaxis]
     gamma_data_product = np.multiply(gamma_, data_)
     gamma_sum = np.sum(gamma_, axis=0)
     means_ = np.divide(np.sum(gamma_data_product, axis=0), gamma_sum)
@@ -106,43 +72,6 @@ def maximizationStep_(data, K, N, D, gamma):
     return means_, covs, mix_coef
 
 
-""" not very important
-"""
-
-
-def maximizationStep(data, K, N, D, gamma):
-    Nk = np.zeros(K)
-    means = np.zeros((K, D))
-    covariances = np.zeros((K, D, D))
-    mixing_coefficients = np.zeros(K)
-
-    for k in range(K):
-        sum = 0
-        for n in range(N):
-            sum = sum + gamma[n, k]
-        Nk[k] = sum
-        print("sum")
-        print(sum)
-
-        sum = 0
-        for n in range(N):
-            sum = sum + gamma[n, k] * data[n]
-        means[k] = sum / Nk[k]
-
-        sum = 0
-        for n in range(N):
-            sum = (
-                sum
-                + gamma[n, k]
-                * (data[n] - means[k])
-                * (data[n] - means[k])[np.newaxis].T
-            )
-        covariances[k] = sum / Nk[k]
-
-        mixing_coefficients[k] = Nk[k] / N
-    return means, covariances, mixing_coefficients
-
-
 def prediction(data, K, N, means, covariances, mixing_coefficients):
     predicted_k = np.zeros(N, dtype=int)
     for n in range(N):
@@ -155,9 +84,7 @@ def prediction(data, K, N, means, covariances, mixing_coefficients):
     return predicted_k
 
 
-def plot_state_(data, mus, covs, prediction_k):
-    print("shape")
-    print(data.shape)
+def plot_state(data, means, covs, prediction_k):
     min = np.matrix(data).min(0).getA1()
     max = np.matrix(data).max(0).getA1()
 
@@ -166,9 +93,9 @@ def plot_state_(data, mus, covs, prediction_k):
 
     X, Y = np.meshgrid(x1, x2)
 
-    Z1 = multivariate_normal(mus[0], covs[0])
-    Z2 = multivariate_normal(mus[1], covs[1])
-    Z3 = multivariate_normal(mus[2], covs[2])
+    Z1 = multivariate_normal(means[0], covs[0])
+    Z2 = multivariate_normal(means[1], covs[1])
+    Z3 = multivariate_normal(means[2], covs[2])
 
     # use colormap
     colormap = np.array(["r", "g", "b"])
@@ -228,7 +155,7 @@ def em():
     print("mixing_coefficients: ", mixing_coefficients)
 
     log_likelihoods = []
-    current_log_likelihood = logLikelihoodCalculation(
+    current_log_likelihood = logLikelihood(
         data, K, N, means, covariances, mixing_coefficients
     )
     log_likelihoods.append(current_log_likelihood)
@@ -236,13 +163,13 @@ def em():
     i = 0
     while i < max_iteration_number:
         predicted_k = prediction(data, K, N, means, covariances, mixing_coefficients)
-        plot_state_(data, means, covariances, predicted_k)
+        plot_state(data, means, covariances, predicted_k)
 
-        gamma = expectationStep_(data, K, N, means, covariances, mixing_coefficients)
-        means, covariances, mixing_coefficients = maximizationStep_(
+        gamma = expectation_step(data, K, N, means, covariances, mixing_coefficients)
+        means, covariances, mixing_coefficients = maximization_step(
             data, K, N, D, gamma
         )
-        current_log_likelihood = logLikelihoodCalculation(
+        current_log_likelihood = logLikelihood(
             data, K, N, means, covariances, mixing_coefficients
         )
         log_likelihoods.append(current_log_likelihood)
@@ -258,13 +185,11 @@ def em():
         i = i + 1
 
     predicted_k = prediction(data, K, N, means, covariances, mixing_coefficients)
-    plotting(i, data, predicted_k)
+    plot_state(data, means, covariances, predicted_k)
+    #plotting(i, data, predicted_k)
 
     print("Final Values: ")
     print("means = ", means)
     print("covariances = ", covariances)
     print("mixing_coefficients: ", mixing_coefficients)
 
-
-if __name__ == "__main__":
-    main()
