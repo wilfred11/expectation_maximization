@@ -10,5 +10,5 @@ The E-M algorithm maximizes the likelihood of data assuming a certain number dis
 
 ![plot_state_iteration_64](https://github.com/user-attachments/assets/9e977c85-7298-4b2c-9d18-c6e4433eba92)
 
-<img src="https://github.com/user-attachments/assets/9e977c85-7298-4b2c-9d18-c6e4433eba92" width="100" >
+<img src="https://github.com/user-attachments/assets/9e977c85-7298-4b2c-9d18-c6e4433eba92" width="300" >
 
