@@ -2,7 +2,7 @@ import numpy as np
 from scipy.stats import multivariate_normal
 import random
 import matplotlib.pyplot as plt
-import os
+import os, shutil
 np.random.seed(seed=24)
 random.seed(10)
 
@@ -16,7 +16,7 @@ this function creates 600 data items that origins from three bivariate normal di
 def create_data():
     m1 = [1, 1]  # consider a random mean and covariance value
     m2 = [7, 7]
-    m3 = [20, 8]
+    m3 = [10, 7]
     cov1 = [[3, 2], [2, 3]]
     cov2 = [[2, -1], [-1, 2]]
     cov3 = [[12, -11], [-11, 12]]
@@ -26,7 +26,7 @@ def create_data():
     y = np.random.multivariate_normal(m2, cov2, size=(200,))
     z = np.random.multivariate_normal(m3, cov3, size=(200,))
     d = np.concatenate((x, y, z), axis=0)
-    return d, x, y, z
+    return d
 
 
 def logLikelihood(data, K, N, means, covariances, mixing_coefficients):
@@ -38,9 +38,6 @@ def logLikelihood(data, K, N, means, covariances, mixing_coefficients):
             )
     log_likelihood = np.sum(np.log(likelihood.dot(mixing_coefficients)))
     return log_likelihood
-
-
-
 
 
 
@@ -84,6 +81,11 @@ def prediction(data, K, N, means, covariances, mixing_coefficients):
     return predicted_k
 
 
+def plot_scatter(data):
+    plt.figure(figsize=(10, 10))
+    plt.scatter(data[:, 0], data[:, 1], marker="o")
+    plt.savefig('./plots/star.png')
+
 def plot_state(data, means, covs, prediction_k, iteration):
     min = np.matrix(data).min(0).getA1()
     max = np.matrix(data).max(0).getA1()
@@ -109,49 +111,42 @@ def plot_state(data, means, covs, prediction_k, iteration):
     plt.contour(X, Y, Z2.pdf(pos), colors="g", alpha=0.5)
     plt.contour(X, Y, Z3.pdf(pos), colors="b", alpha=0.5)
     plt.axis("equal")
-    plt.xlabel("X-Axis", fontsize=16)  # X-Axis
-    plt.ylabel("Y-Axis", fontsize=16)  # Y-Axis
+    plt.xlabel("x1", fontsize=16)
+    plt.ylabel("x2", fontsize=16)
     plt.legend()
     plt.grid()
+    plt.title("EM iteration "+ str(iteration))
     #plt.show()
-    plt.savefig('plot_state_iteration_'+str(iteration) + '.png')
-    plt.clf()
+    plt.savefig('./plots/plot_state_iteration_'+str(iteration) + '.png')
+    plt.close()
 
 
+"""
+This function creates random means for three cluster distributions, every distribution mean contains 2 means, one for every data feature"""
 def random_means_covs():
     means = np.random.rand(3, 2)
-
-    print(means)
+    covariances = [
+        [[1.0, 0.0], [0.0, 1.0]],
+        [[1.0, 0.0], [0.0, 1.0]],
+        [[1.0, 0.0], [0.0, 1.0]],
+    ]
+    print(np.array(covariances).shape)
+    return means, covariances
 
 def em():
-    random_means_covs()
-    print("##########")
-    # data = np.load("dataset.npy")  # path of data file
-    all = create_data()
-    data = all[0]
+    try:
+        shutil.rmtree('/plots')
+    except:
+        print("exception")
+    os.makedirs('/plots')
+
+    data = create_data()
     N = data.shape[0]  # number of rows
     D = data.shape[1]  # number of columns -> dimension of data
     K = 3  # number of distributions/clusters
     max_iteration_number = 200  # number of maximum iteration
     convergence_value = 0.01  # negligible convergence value
-
-    means = [
-        [
-            random.random(),
-            random.random(),
-        ],  # mean of dimension 1, dimension 2 for distribution 1
-        [
-            random.random(),
-            random.random(),
-        ],  # mean of dimension 1, dimension 2 for distribution 2
-        [random.random(), random.random()],
-    ]  # mean of dimension 1, dimension 2 for distribution 3
-
-    covariances = [
-        [[1.0, 0.0], [0.0, 1.0]],  # covariance matrix of distribution 1
-        [[1.0, 0.0], [0.0, 1.0]],  # covariance matrix of distribution 2
-        [[1.0, 0.0], [0.0, 1.0]],
-    ]  # covariance matrix of distribution 3
+    means, covariances = random_means_covs()
 
     mixing_coefficients = np.zeros(K)
     mixing_coefficients[0] = 1 / K  # weight of distribution 1
@@ -168,6 +163,7 @@ def em():
         data, K, N, means, covariances, mixing_coefficients
     )
     log_likelihoods.append(current_log_likelihood)
+    plot_scatter(data)
 
     i = 0
     while i < max_iteration_number:
@@ -185,11 +181,6 @@ def em():
         print("Iteration: ", i, " - Log likelihood value: ", current_log_likelihood)
         if abs(log_likelihoods[-1] - log_likelihoods[-2]) < convergence_value:
             break
-
-        # Use if plots for some intermediate iterations are needed
-        # if i%5==0:
-        #    predicted_k = prediction(data, K, N, means, covariances, mixing_coefficients)
-        #    plotting(i, data, predicted_k)
 
         i = i + 1
 
