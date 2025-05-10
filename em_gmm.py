@@ -2,7 +2,7 @@ import numpy as np
 from scipy.stats import multivariate_normal
 import random
 import matplotlib.pyplot as plt
-
+import os
 np.random.seed(seed=24)
 random.seed(10)
 
@@ -84,7 +84,7 @@ def prediction(data, K, N, means, covariances, mixing_coefficients):
     return predicted_k
 
 
-def plot_state(data, means, covs, prediction_k):
+def plot_state(data, means, covs, prediction_k, iteration):
     min = np.matrix(data).min(0).getA1()
     max = np.matrix(data).max(0).getA1()
 
@@ -113,10 +113,19 @@ def plot_state(data, means, covs, prediction_k):
     plt.ylabel("Y-Axis", fontsize=16)  # Y-Axis
     plt.legend()
     plt.grid()
-    plt.show()
+    #plt.show()
+    plt.savefig('plot_state_iteration_'+str(iteration) + '.png')
+    plt.clf()
 
+
+def random_means_covs():
+    means = np.random.rand(3, 2)
+
+    print(means)
 
 def em():
+    random_means_covs()
+    print("##########")
     # data = np.load("dataset.npy")  # path of data file
     all = create_data()
     data = all[0]
@@ -163,7 +172,7 @@ def em():
     i = 0
     while i < max_iteration_number:
         predicted_k = prediction(data, K, N, means, covariances, mixing_coefficients)
-        plot_state(data, means, covariances, predicted_k)
+        plot_state(data, means, covariances, predicted_k, i)
 
         gamma = expectation_step(data, K, N, means, covariances, mixing_coefficients)
         means, covariances, mixing_coefficients = maximization_step(
@@ -185,7 +194,7 @@ def em():
         i = i + 1
 
     predicted_k = prediction(data, K, N, means, covariances, mixing_coefficients)
-    plot_state(data, means, covariances, predicted_k)
+    plot_state(data, means, covariances, predicted_k, i)
     #plotting(i, data, predicted_k)
 
     print("Final Values: ")
