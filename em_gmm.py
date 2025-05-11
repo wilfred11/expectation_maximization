@@ -30,13 +30,12 @@ def create_data():
 
 
 def logLikelihood(data, K, N, means, covariances, mixing_coefficients):
-    likelihood = np.zeros((N, K))
-    for n in range(N):
-        for k in range(K):
-            likelihood[n, k] = multivariate_normal.pdf(
-                data[n], means[k], covariances[k]
-            )
-    log_likelihood = np.sum(np.log(likelihood.dot(mixing_coefficients)))
+    likelihood_l = []
+    for k in range(K):
+        likelihood = multivariate_normal.pdf(data, means[k], covariances[k])
+        likelihood_l.append(likelihood)
+    likelihood_l = np.array(likelihood_l).T
+    log_likelihood = np.sum(np.log(likelihood_l.dot(mixing_coefficients)))
     return log_likelihood
 
 
