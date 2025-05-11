@@ -21,11 +21,11 @@ The EM algorithm has similarities with K-means clustering. EM not only uses the 
 * Repeat the above steps for a fixed number of iterations or until convergence is reached.
 
 ### Two steps
-Initially, distributions can be created using random values for means and covariance matrix.
+Initially, distributions can be created using random values for means and covariance matrix. But after that, the expectation step and the maximization step will be applied iteratively.
 #### The expectation step
 In the expectation step, the algorithm computes the probability that each data point belongs to each component of the GMM.
 
-#### The maximation step
+#### The maximization step
 
 
 
