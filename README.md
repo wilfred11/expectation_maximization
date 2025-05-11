@@ -25,7 +25,9 @@ Initially, distributions can be created using random values for means and covari
 #### The expectation step
 In the expectation step, the algorithm computes the probability that each data point belongs to each distribution of the GMM.
 For a simple normal distribution chances for a result can be obtained using the 
-`norm`
+`from scipy.stats import norm`
+
+`norm.pdf(x1, mean, sigma)`
 
 #### The maximization step
 
