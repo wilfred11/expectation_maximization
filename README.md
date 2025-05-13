@@ -86,6 +86,13 @@ At the end of this first step, distributions and data looks like this.
 
 The only thing that needs to be recalculated is the chance to belong to the different clusters (initially they chances were set to 0.5 and 0.5), the normalized likelihoods for Cluster1 are summed up and divided by the number of samples. So the chance to belong to Cluster 1 is 0.10 and the chance to belong to Cluster 2 is 0.90.
 
+#### End of E-M algorithm
+
+The algorithm stops when the overall likelihood gain of an iteration  is below some threshold.
+
+![distri_9](https://github.com/user-attachments/assets/67927e67-4a5d-48df-a07e-e25041335551)
+
+
 ### The multivariate case
 
 In the bivariate case the normal distributions have two means and a 2 by 2 covariance matrix. This complicates matters.
