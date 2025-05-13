@@ -70,11 +70,15 @@ The updated mu values will be used to calculate new variances. The scaledLikelih
 
 `varianceCluster2 = sum(((samples - muCluster2) ** 2) * scaledLikelihoods2)/numberOfSamples`
 
-For Cluster 1 values look like this, the new mean is 0.925 and the new sigma value is 0.37
+For Cluster 1 values look like this, the new mean is 0.925 and the new sigma value is 0.37, the square root of the variance.
 
 ![mu_sigma_it_0](https://github.com/user-attachments/assets/137557ad-64dd-49c9-a0cc-08dd849fcaf9)
 
 For Cluster 2 values would be calculated likewise.
+
+### The multivariate case
+
+In the bivariate case the normal distributions have two means and a 2 by 2 covariance matrix. This complicates matters.
 
 
 
