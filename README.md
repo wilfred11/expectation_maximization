@@ -24,7 +24,11 @@ The EM algorithm has similarities with K-means clustering. EM not only uses the 
 * Repeat the above steps for a fixed number of iterations or until convergence is reached.
 
 ### Two steps
-Initially, distributions can be created using random values for means and variance matrix. But after that, the expectation step and the maximization step will be applied iteratively.
+Initially, distributions can be created using random values for means and variance matrix. But after that, the expectation step and the maximization step will be applied iteratively. For the sake of simplicity the initial distributions will be a univariate normal distributions having means 0 and 1 and sigmas 1 and 1. These distributions and the samples [0,1,3,4,5,6,2,4.5,7,8,10,12]
+
+![distri_0](https://github.com/user-attachments/assets/3cd2f931-4070-4606-9b51-35cdaef824e0)
+
+
 #### The expectation step
 In the expectation step, the algorithm computes the probability that each data point belongs to each distribution of the GMM.
 For a simple normal distribution chances for a result can be obtained using the pdf function of a distribution. When setting 2 clusters, probabilities for every data point (x) are obtained for every distribution. Initially when using 2 clusters, every clusters is supposed to weigh 0.5. Generating probabilities for values from the sample could be done like this:
