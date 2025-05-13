@@ -39,8 +39,8 @@ When using 2 normal distributions norm(0,1) and norm(1,1) as centroids for the c
     `p1 = norm.pdf(x1,0,1)`
     `p2 = norm.pdf(x1,1,1)`
 
-Responsibilities can be calculated:
-lk
+Responsibilities can be calculated
+
     $respcluster1 = \frac{p1}{p1+p2}$
   
     
