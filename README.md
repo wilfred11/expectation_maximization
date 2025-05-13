@@ -70,7 +70,7 @@ The updated mu values will be used to calculate new variances. The scaledLikelih
 
 `varianceCluster2 = sum(((samples - muCluster2) ** 2) * scaledLikelihoods2)`
 
-For Cluster 1 values look like this, the new mean is 0.925 and the new sigma value is 1.34
+For Cluster 1 values look like this, the new mean is 0.925 and the new sigma value is 0.34
 
 ![mu_sigma_it_0](https://github.com/user-attachments/assets/137557ad-64dd-49c9-a0cc-08dd849fcaf9)
 
