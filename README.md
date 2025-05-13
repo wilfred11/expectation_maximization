@@ -58,9 +58,21 @@ When plugging in the numbers likelihoodCluster1 = 0.18 and likelihoodCluster2=0.
 
 #### The maximization step
 
-In the maximization step the scaled likelihoods are used to update means and sigmas for the clusters.
+In the maximization step the scaled likelihoods are used to calculate means and sigmas for the clusters. A new mu (expected value) for Cluster1 and Cluster2 is being calculated using the scaledLikelihoods1(13 numbers) and the samples(13 nummbers). The more likely a number is in a cluster, the more its value weighs in the new mu. This way the new mu will shift towards its 'real' value. 
 
-`mu_cluster1 = sum(samples * scaledLikelihoods1)`
+`muCluster1 = sum(samples * scaledLikelihoods1)`
+
+`muCluster2 = sum(samples * scaledLikelihoods2)`
+
+The updated mu values will be used to calculate new variances.
+
+`varCluster1 = sum(((samples - muCluster1) ** 2) * scaledLikelihoods1)`
+
+`varCluster2 = sum(((samples - muCluster2) ** 2) * scaledLikelihoods2)`
+
+
+
+
 
 
 
