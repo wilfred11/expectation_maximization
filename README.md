@@ -74,6 +74,9 @@ For Cluster 1 values look like this, the new mean is 0.925 and the new sigma val
 
 ![mu_var_it1](https://github.com/user-attachments/assets/8cced2e4-cd4b-4b59-bf96-2cf8f50bb7e7)
 
+For Cluster 2 values would be calculated likewise.
+
+
 
 
 
