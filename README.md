@@ -89,7 +89,7 @@ The only thing that needs to be recalculated is the chance to belong to the diff
 #### End of E-M algorithm
 
 The algorithm stops when the overall likelihood gain of an iteration  is below some threshold.
-The overall likelihood for the samples given two distributions is the product of every sum of independent likelihoods for the two Clusters of evry item in the sample.
+The overall likelihood for the samples given two distributions is the product of every sum of two independent clusterlikelihoods of every item in the sample.
 
   `likelihood1 = possibilityCluster1*norm.pdf(samples,mu1,sigma1)`
   
