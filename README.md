@@ -42,7 +42,8 @@ When using 2 normal distributions norm(0,1) and norm(1,1) as centroids for the c
 Responsibilities can be calculated as follows
 
 $respcluster1 = \frac{p1}{p1+p2}$
-  
+
+$respcluster2 = \frac{p2}{p1+p2}$
     
 
 #### The maximization step
