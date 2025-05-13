@@ -24,7 +24,7 @@ The EM algorithm has similarities with K-means clustering. EM not only uses the 
 * Repeat the above steps for a fixed number of iterations or until convergence is reached.
 
 ### Two steps
-Initially, distributions can be created using random values for means and variance matrix. But after that, the expectation step and the maximization step will be applied iteratively. For the sake of simplicity the distributions will be univariate normal distributions initially having means 0 and 1 and sigmas 1 and 1. These distributions and the samples [0,1,3,4,5,6,2,4.5,7,8,10,12] will be subject of the example.
+Initially, distributions can be created using random values for means and variance matrix. But after that, the expectation step and the maximization step will be applied iteratively. For the sake of simplicity the distributions will be univariate normal distributions initially having means 0 and 1 and sigmas 1 and 1. These distributions and the samples [0,1,3,4,5,6,2,4.5,7,8,10,12] will be subject of the example. Data is colored in the distribution it belongs most to.
 
 ![distri_0](https://github.com/user-attachments/assets/3cd2f931-4070-4606-9b51-35cdaef824e0)
 
