@@ -24,12 +24,26 @@ The EM algorithm has similarities with K-means clustering. EM not only uses the 
 Initially, distributions can be created using random values for means and covariance matrix. But after that, the expectation step and the maximization step will be applied iteratively.
 #### The expectation step
 In the expectation step, the algorithm computes the probability that each data point belongs to each distribution of the GMM.
-For a simple normal distribution chances for a result can be obtained using the p
-`from scipy.stats import norm`
+For a simple normal distribution chances for a result can be obtained using the pdf function of a distribution. When setting 2 clusters, probabilities for every data point (x) are obtained for every distribution. This could be done like this:
 
-`norm.pdf(x1, mean, sigma)`
+  `from scipy.stats import norm`
+  
+  `p1=norm.pdf(x1, mean, sigma)`
+  
+  `p2=norm.pdf(x1, mean, sigma)`
 
-`norm.pdf(x1, mean, sigma)`
+For every datapoint chances for both distributions are summed.
+When using 2 normal distributions norm(0,1) and norm(1,1) as centroids for the clusters, for one point 2 chances can be obtained:
+    `x1=2`
+    `p1 = norm.pdf(x1,0,1)`
+    `p2 = norm.pdf(x1,1,1)`
+
+Responsibilities can be calculated:
+  `resp_cluster_1 = p1
+  $zscore = \frac{p1-p2}{\sqrt{\hat{p}(1-\hat{p})\times(\frac{1}{n1}+\frac{1}{n2})}}$
+    
+
+
 
 #### The maximization step
 
