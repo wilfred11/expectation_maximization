@@ -66,9 +66,9 @@ In the maximization step the scaled likelihoods are used to calculate means and 
 
 The updated mu values will be used to calculate new variances. The scaledLikelihoods will guarantee that more likely samples will weigh more in the newly calculated variances.
 
-`varianceCluster1 = sum(((samples - muCluster1) ** 2) * scaledLikelihoods1)`
+`varianceCluster1 = sum(((samples - muCluster1) ** 2) * scaledLikelihoods1)/numberOfSamples`
 
-`varianceCluster2 = sum(((samples - muCluster2) ** 2) * scaledLikelihoods2)`
+`varianceCluster2 = sum(((samples - muCluster2) ** 2) * scaledLikelihoods2)/numberOfSamples`
 
 For Cluster 1 values look like this, the new mean is 0.925 and the new sigma value is 0.34
 
