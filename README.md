@@ -70,6 +70,11 @@ The updated mu values will be used to calculate new variances. The scaledLikelih
 
 `varianceCluster2 = sum(((samples - muCluster2) ** 2) * scaledLikelihoods2)`
 
+For Cluster 1 values look like this.
+
+![mu_var_it1](https://github.com/user-attachments/assets/d08552e6-34ab-43a2-a1fc-0e05d6a9eee0)
+
+
 
 
 
