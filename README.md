@@ -45,7 +45,7 @@ $likelihoodCluster1 = \frac{p1}{p1+p2}$
 
 $likelihoodCluster2 = \frac{p2}{p1+p2}$
 
-When plugging in the numbers likelihoodCluster1 = 0.18 and likelihoodCluster2=0.82. These chances (which add up to 1) express the likelihood a number is part of one of both clusters. For every datapoint in the dataset, these cluster likelihoods are calculated.
+When plugging in the numbers likelihoodCluster1 = 0.18 and likelihoodCluster2=0.82. These chances (which add up to 1) express the likelihood a number is part of one of both clusters. For every datapoint in the dataset, these cluster likelihoods are calculated. For some dataset these numbers calculated and rounded.
 
 ![likeli_it_0](https://github.com/user-attachments/assets/e709d323-c3d0-4982-af23-0e88bcc65379)
 
