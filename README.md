@@ -12,7 +12,10 @@ The E-M algorithm is able to fit data to distributions as in the images below.
 
 <img src="https://github.com/user-attachments/assets/9e977c85-7298-4b2c-9d18-c6e4433eba92" width="400" >
 
+To explain how the algorithm works, I will use simple data that will end up in 2 univariate clusters.
+
 ### Similarities with  K-means clustering
+
 The EM algorithm has similarities with K-means clustering. EM not only uses the means, but also the spread of data to cluster data.
 * Randomly initialize K cluster centroids μₖ.
 * Compute the distance of each data point with all K cluster centroids.
@@ -21,7 +24,7 @@ The EM algorithm has similarities with K-means clustering. EM not only uses the 
 * Repeat the above steps for a fixed number of iterations or until convergence is reached.
 
 ### Two steps
-Initially, distributions can be created using random values for means and covariance matrix. But after that, the expectation step and the maximization step will be applied iteratively.
+Initially, distributions can be created using random values for means and variance matrix. But after that, the expectation step and the maximization step will be applied iteratively.
 #### The expectation step
 In the expectation step, the algorithm computes the probability that each data point belongs to each distribution of the GMM.
 For a simple normal distribution chances for a result can be obtained using the pdf function of a distribution. When setting 2 clusters, probabilities for every data point (x) are obtained for every distribution. This could be done like this:
