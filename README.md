@@ -89,7 +89,7 @@ The only thing that needs to be recalculated is the chance to belong to the diff
 #### End of E-M algorithm
 
 The algorithm stops when the overall likelihood gain of an iteration  is below some threshold.
-The overall likelihood for the samples given two distributions is the product of every sum of two independent clusterlikelihoods of every item in the sample.
+The overall likelihood for the samples given two distributions is the product of every sum of two independent clusterlikelihoods of every item in the samples.
 
   `likelihood1 = possibilityCluster1*norm.pdf(samples,mu1,sigma1)`
   
@@ -103,26 +103,4 @@ The overall likelihood for the samples given two distributions is the product of
 ### The multivariate case
 
 In the bivariate case the normal distributions have two means and a 2 by 2 covariance matrix. This complicates matters.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
