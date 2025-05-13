@@ -35,20 +35,20 @@ For a simple normal distribution chances for a result can be obtained using the 
 
   `from scipy.stats import norm`
 
-  `w1=05`
+  ` possibilityCluster1=05`
 
-  `w2=05`
+  ` possibilityCluster2=05`
   
-  `p1=w1*norm.pdf(x1, mean, sigma)`
+  `p1= possibilityCluster1*norm.pdf(x1, mean, sigma)`
   
-  `p2=w2*norm.pdf(x1, mean, sigma)`
+  `p2= possibilityCluster2*norm.pdf(x1, mean, sigma)`
 
 For every datapoint chances for both distributions are summed.
 When using two normal distributions C1=norm(0,1) and C2=norm(1,1) as 'centroids' for the clusters, for one point 2 chances can be obtained:
 
     `x1=2`
-    `p1 = w1*norm.pdf(x1,0,1)`
-    `p2 = w2*norm.pdf(x1,1,1)`
+    `p1 = possibilityCluster1*norm.pdf(x1,0,1)`
+    `p2 = possibilityCluster2*norm.pdf(x1,1,1)`
 
 Responsibilities can be calculated as follows
 
