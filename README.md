@@ -64,15 +64,15 @@ When plugging in the numbers likelihoodCluster1 = 0.18 and likelihoodCluster2=0.
 
 In the maximization step the scaled likelihoods are used to calculate means and sigmas for the clusters. A new mu (expected value) for Cluster1 and Cluster2 is being calculated using the scaledLikelihoods1(13 numbers) and the samples(13 nummbers). The more likely a number from the sample is in a cluster, the more its value weighs in the new mu. This way the new mu will shift towards its 'real' value. 
 
-`muCluster1 = sum(samples * scaledLikelihoods1)`
+`muCluster1 = np.sum(samples * scaledLikelihoods1)`
 
-`muCluster2 = sum(samples * scaledLikelihoods2)`
+`muCluster2 = np.sum(samples * scaledLikelihoods2)`
 
 The updated mu values will be used to calculate new variances. The scaledLikelihoods will guarantee that more likely samples will weigh more in the newly calculated variances.
 
-`varianceCluster1 = sum(((samples - muCluster1) ** 2) * scaledLikelihoods1)/numberOfSamples`
+`varianceCluster1 = np.sum(((samples - muCluster1) ** 2) * scaledLikelihoods1)/numberOfSamples`
 
-`varianceCluster2 = sum(((samples - muCluster2) ** 2) * scaledLikelihoods2)/numberOfSamples`
+`varianceCluster2 = np.sum(((samples - muCluster2) ** 2) * scaledLikelihoods2)/numberOfSamples`
 
 For Cluster 1 values look like this, the new mean is 0.925 and the new sigma value is 0.37, the square root of the variance.
 
@@ -95,7 +95,7 @@ The overall likelihood for the samples given two distributions is the product of
   
   `likelihood2 = possibilityCluster2*norm.pdf(samples,mu2,sigma2)`
   
-  `overallLikelihood = prod(likelihood1 + likelihood2)`
+  `overallLikelihood = np.log(prod(likelihood1 + likelihood2))`
 
 ![distri_9](https://github.com/user-attachments/assets/67927e67-4a5d-48df-a07e-e25041335551)
 
