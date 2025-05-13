@@ -47,14 +47,14 @@ For every datapoint chances for both distributions are summed.
 When using two normal distributions C1=norm(0,1) and C2=norm(1,1) as 'centroids' for the clusters, for one point 2 chances can be obtained:
 
     `x1=2`
-    `p1 = possibilityCluster1*norm.pdf(x1,0,1)`
-    `p2 = possibilityCluster2*norm.pdf(x1,1,1)`
+    `likelihood1 = possibilityCluster1*norm.pdf(x1,0,1)`
+    `likelihood2 = possibilityCluster2*norm.pdf(x1,1,1)`
 
 Responsibilities can be calculated as follows
 
-$likelihoodCluster1 = \frac{p1}{p1+p2}$
+$likelihoodCluster1 = \frac{likelihood1}{likelihood1+likelihood2}$
 
-$likelihoodCluster2 = \frac{p2}{p1+p2}$
+$likelihoodCluster2 = \frac{likelihood2}{likelihood1+likelihood2}$
 
 When plugging in the numbers likelihoodCluster1 = 0.18 and likelihoodCluster2=0.82. These chances (which add up to 1) express the likelihood a number is part of one of both clusters. For every datapoint in the dataset, these cluster likelihoods are calculated. For some dataset these numbers calculated and rounded.
 
@@ -89,6 +89,13 @@ The only thing that needs to be recalculated is the chance to belong to the diff
 #### End of E-M algorithm
 
 The algorithm stops when the overall likelihood gain of an iteration  is below some threshold.
+The likelihood for the samples given two distributions is:
+
+  `likelihood1 = possibilityCluster1*norm.pdf(samples,mu1,sigma1)`
+  
+  `likelihood2 = possibilityCluster2*norm.pdf(samples,mu1,sigma1)`
+  
+  `likelihood = prod(likelihood1 + likelihood2)`
 
 ![distri_9](https://github.com/user-attachments/assets/67927e67-4a5d-48df-a07e-e25041335551)
 
