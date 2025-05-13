@@ -84,6 +84,7 @@ At the end of this first step, distributions and data looks like this.
 
 ![distri_1](https://github.com/user-attachments/assets/bd625f77-19a5-49ae-bb09-4f663d09ebb5)
 
+The only thing that needs to be recalculated is the chance to belong to the different clusters (initially they chances were set to 0.5 and 0.5), the normalized likelihoods for Cluster1 are summed up and divided by the number of samples. So the chance to belong to Cluster 1 is 0.10 and the chance to belong to Cluster 2 is 0.90.
 
 ### The multivariate case
 
