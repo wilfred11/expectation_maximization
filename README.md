@@ -93,7 +93,7 @@ The overall likelihood for the samples given two distributions is the product of
 
   `likelihood1 = possibilityCluster1*norm.pdf(samples,mu1,sigma1)`
   
-  `likelihood2 = possibilityCluster2*norm.pdf(samples,mu1,sigma1)`
+  `likelihood2 = possibilityCluster2*norm.pdf(samples,mu2,sigma2)`
   
   `overallLikelihood = prod(likelihood1 + likelihood2)`
 
