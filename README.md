@@ -34,13 +34,15 @@ For a simple normal distribution chances for a result can be obtained using the 
 
 For every datapoint chances for both distributions are summed.
 When using 2 normal distributions norm(0,1) and norm(1,1) as centroids for the clusters, for one point 2 chances can be obtained:
+
     `x1=2`
     `p1 = norm.pdf(x1,0,1)`
     `p2 = norm.pdf(x1,1,1)`
 
 Responsibilities can be calculated:
-  `resp_cluster_1 = p1
-  $zscore = \frac{p1-p2}{\sqrt{\hat{p}(1-\hat{p})\times(\frac{1}{n1}+\frac{1}{n2})}}$
+
+    $resp_cluster_1 = \frac{p1}{p1+p2}$
+  
     
 
 
