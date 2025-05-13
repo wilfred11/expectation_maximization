@@ -39,9 +39,9 @@ For a simple normal distribution chances for a result can be obtained using the 
 
   ` possibilityCluster2=05`
   
-  `p1= possibilityCluster1*norm.pdf(x1, mean, sigma)`
+  `likelihood1= possibilityCluster1*norm.pdf(x1, mean, sigma)`
   
-  `p2= possibilityCluster2*norm.pdf(x1, mean, sigma)`
+  `likelihood2= possibilityCluster2*norm.pdf(x1, mean, sigma)`
 
 For every datapoint chances for both distributions are summed.
 When using two normal distributions C1=norm(0,1) and C2=norm(1,1) as 'centroids' for the clusters, for one point 2 chances can be obtained:
@@ -89,13 +89,13 @@ The only thing that needs to be recalculated is the chance to belong to the diff
 #### End of E-M algorithm
 
 The algorithm stops when the overall likelihood gain of an iteration  is below some threshold.
-The likelihood for the samples given two distributions is:
+The  overall likelihood for the samples given two distributions is:
 
   `likelihood1 = possibilityCluster1*norm.pdf(samples,mu1,sigma1)`
   
   `likelihood2 = possibilityCluster2*norm.pdf(samples,mu1,sigma1)`
   
-  `likelihood = prod(likelihood1 + likelihood2)`
+  `overallLikelihood = prod(likelihood1 + likelihood2)`
 
 ![distri_9](https://github.com/user-attachments/assets/67927e67-4a5d-48df-a07e-e25041335551)
 
