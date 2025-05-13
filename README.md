@@ -47,12 +47,11 @@ $likelihoodCluster2 = \frac{p2}{p1+p2}$
 
 When plugging in the numbers likelihoodCluster1 = 0.18 and likelihoodCluster2=0.82. These chances (which add up to 1) express the likelihood a number is part of one of both clusters. For every datapoint in the dataset, these cluster likelihoods are calculated.
 
-![likeli_it_0](https://github.com/user-attachments/assets/5cd46c2e-00ad-4599-a570-be6219739fd5)
+![likeli_it_0](https://github.com/user-attachments/assets/e709d323-c3d0-4982-af23-0e88bcc65379)
 
 #### The maximization step
 
 In the maximization step the likelihoods are used to update means and sigmas for the clusters.
-
 
 
 
