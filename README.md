@@ -45,8 +45,6 @@ Responsibilities can be calculated:
   
     
 
-
-
 #### The maximization step
 
 
