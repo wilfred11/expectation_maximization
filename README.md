@@ -33,7 +33,7 @@ For a simple normal distribution chances for a result can be obtained using the 
   `p2=norm.pdf(x1, mean, sigma)`
 
 For every datapoint chances for both distributions are summed.
-When using two normal distributions C1=norm(0,1) and C2=norm(1,1) as centroids for the clusters, for one point 2 chances can be obtained:
+When using two normal distributions C1=norm(0,1) and C2=norm(1,1) as 'centroids' for the clusters, for one point 2 chances can be obtained:
 
     `x1=2`
     `p1 = norm.pdf(x1,0,1)`
@@ -49,8 +49,9 @@ When plugging in the numbers likelihoodCluster1 = 0.18 and likelihoodCluster2=0.
 
 ![likeli_it_0](https://github.com/user-attachments/assets/5cd46c2e-00ad-4599-a570-be6219739fd5)
 
-
 #### The maximization step
+
+In the maximization step the likelihoods are used to update means and sigmas for the clusters.
 
 
 
