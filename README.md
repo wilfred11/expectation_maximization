@@ -95,7 +95,7 @@ The overall likelihood for the samples given two distributions is the product of
   
   `likelihood2 = possibilityCluster2*norm.pdf(samples,mu2,sigma2)`
   
-  `overallLikelihood = np.log(prod(likelihood1 + likelihood2))`
+  `overallLogLikelihood = np.log(prod(likelihood1 + likelihood2))`
 
 ![distri_9](https://github.com/user-attachments/assets/67927e67-4a5d-48df-a07e-e25041335551)
 
