@@ -27,20 +27,24 @@ The EM algorithm has similarities with K-means clustering. EM not only uses the 
 Initially, distributions can be created using random values for means and variance matrix. But after that, the expectation step and the maximization step will be applied iteratively.
 #### The expectation step
 In the expectation step, the algorithm computes the probability that each data point belongs to each distribution of the GMM.
-For a simple normal distribution chances for a result can be obtained using the pdf function of a distribution. When setting 2 clusters, probabilities for every data point (x) are obtained for every distribution. This could be done like this:
+For a simple normal distribution chances for a result can be obtained using the pdf function of a distribution. When setting 2 clusters, probabilities for every data point (x) are obtained for every distribution. Initially when using 2 clusters, every clusters is supposed to weigh 0.5. Generating probabilities for values from the sample could be done like this:
 
   `from scipy.stats import norm`
+
+  `w1=05`
+
+  `w2=05`
   
-  `p1=norm.pdf(x1, mean, sigma)`
+  `p1=w1*norm.pdf(x1, mean, sigma)`
   
-  `p2=norm.pdf(x1, mean, sigma)`
+  `p2=w2*norm.pdf(x1, mean, sigma)`
 
 For every datapoint chances for both distributions are summed.
 When using two normal distributions C1=norm(0,1) and C2=norm(1,1) as 'centroids' for the clusters, for one point 2 chances can be obtained:
 
     `x1=2`
-    `p1 = norm.pdf(x1,0,1)`
-    `p2 = norm.pdf(x1,1,1)`
+    `p1 = w1*norm.pdf(x1,0,1)`
+    `p2 = w2*norm.pdf(x1,1,1)`
 
 Responsibilities can be calculated as follows
 
@@ -54,7 +58,16 @@ When plugging in the numbers likelihoodCluster1 = 0.18 and likelihoodCluster2=0.
 
 #### The maximization step
 
-In the maximization step the likelihoods are used to update means and sigmas for the clusters.
+In the maximization step the scaled likelihoods are used to update means and sigmas for the clusters.
+
+`mu_cluster1 = sum(samples * scaledLikelihoods1)`
+
+
+
+
+
+
+
 
 
 
