@@ -99,7 +99,7 @@ The overall likelihood for the samples given two distributions is the product of
 
 ![distri_9](https://github.com/user-attachments/assets/67927e67-4a5d-48df-a07e-e25041335551)
 
-As this example is very simple loglikelihood is maximized after a couple of iterations.
+As this example is very simple, the model is converged after a couple of iterations.
 
 ![likelihoods](https://github.com/user-attachments/assets/9b506b53-328e-4211-910a-fbd10c12acb2)
 
