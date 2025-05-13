@@ -80,6 +80,11 @@ For Cluster 1 values look like this, the new mean is 0.925 and the new sigma val
 
 For Cluster 2 values would be calculated likewise.
 
+At the end of this first step, distributions and data looks like this.
+
+![distri_1](https://github.com/user-attachments/assets/bd625f77-19a5-49ae-bb09-4f663d09ebb5)
+
+
 ### The multivariate case
 
 In the bivariate case the normal distributions have two means and a 2 by 2 covariance matrix. This complicates matters.
